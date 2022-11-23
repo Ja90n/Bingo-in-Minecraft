@@ -8,15 +8,13 @@ All players can join the game by executing /bingo and than pressing the join but
 
 The main menu:
 
-
-![image](https://user-images.githubusercontent.com/81578391/174866308-6ab7a105-2707-4f05-94ee-4c2ac7f131ed.png)
+![image](https://user-images.githubusercontent.com/81578391/203627388-0fdfd450-3e92-4dc4-a8d6-50ffee6d2549.png)
 
 From here you can see the status of the game, you can join or leave if the game is inactive and see your bingo card if the game is active or go to the host menu.
 
 Bingo card:
 
-
-![image](https://user-images.githubusercontent.com/81578391/177551801-b8a4ea9b-ef44-4121-9efb-408cbe26b58c.png)
+![image](https://user-images.githubusercontent.com/81578391/203627507-b5e41ca7-b4b2-4511-bafc-cc0ba0e7ab40.png)
 
 Here you can see the card. You can see all your numbers by hovering over them. You can also see the most recently called number and of course call a bingo.
 

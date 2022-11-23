@@ -2,7 +2,7 @@ package com.ja90n.bingo.event.InventoryEvents;
 
 import com.ja90n.bingo.Bingo;
 import com.ja90n.bingo.ConfigManager;
-import com.ja90n.bingo.GameState;
+import com.ja90n.bingo.enums.GameState;
 import com.ja90n.bingo.gui.MainMenuGui;
 import com.ja90n.bingo.runable.WrongClickRunable;
 import org.bukkit.Bukkit;

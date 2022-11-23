@@ -1,7 +1,7 @@
 package com.ja90n.bingo.command;
 
 import com.ja90n.bingo.Bingo;
-import com.ja90n.bingo.GameState;
+import com.ja90n.bingo.enums.GameState;
 import com.ja90n.bingo.gui.MainMenuGui;
 import com.ja90n.bingo.instance.Game;
 import org.bukkit.ChatColor;
@@ -27,6 +27,14 @@ public class BingoCommand implements CommandExecutor {
             return false;
         } else {
             Player player = (Player) sender;
+            if (bingo.getGame().getGameState().equals(GameState.LINE) || bingo.getGame().getGameState().equals(GameState.FULL)){
+                if (bingo.getGame().getPlayers().containsKey(player.getUniqueId())){
+                    if (bingo.getGame().getCard(player.getUniqueId()) != null){
+                        bingo.getGame().getCard(player.getUniqueId()).openCard();
+                        return false;
+                    }
+                }
+            }
             new MainMenuGui(player.getUniqueId(),bingo);
         }
         return false;

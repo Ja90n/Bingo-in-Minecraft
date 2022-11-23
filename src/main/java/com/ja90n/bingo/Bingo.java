@@ -18,7 +18,7 @@ public final class Bingo extends JavaPlugin {
     private ConfigManager configManager;
 
     public static String LanguageEnglishYAMl= "lang_en.yml";
-    public static String LanguageDutchYAMl= "ang_nl.yml";
+    public static String LanguageDutchYAMl= "lang_nl.yml";
     public static String LanguageSpanishYAMl= "lang_es.yml";
     public static int BSTATS_PLUGIN_ID = 15698;
 

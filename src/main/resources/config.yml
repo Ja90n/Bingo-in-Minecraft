@@ -4,3 +4,14 @@ colour: 'pink'
 # Type in the main colour for this plugin
 # colours: red, orange, lime, green, light_blue, blue, pink, purple, black, grey
 # Type in lower case. Eg. 'pink'
+canJoinDuringGame: true
+# If players can join the game while it is live
+
+autohosting: false
+# If a player wants to host the game put this on false, if you want people to play the game automatically set this to true
+timeBetweenCalls: 7
+# The time in seconds that the automatic host calls numbers
+minimumPlayers: 2
+# The minimum amount of players that need to be in the bingo before the countdown of the autohost can start
+countDownLength: 10
+# The lenght of the countdown in seconds

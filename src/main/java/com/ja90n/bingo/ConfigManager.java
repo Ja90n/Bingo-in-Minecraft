@@ -15,6 +15,10 @@ public class ConfigManager {
     private YamlConfiguration yamlConfiguration;
     private ChatColor chatColor;
     private ItemStack itemStack;
+    private final boolean isAutoHosted;
+    private final int secondsBetweenNumbersCalled, countdownSeconds;
+    private final boolean canJoinDuringGame;
+    private final int minimumPlayers;
 
     public ConfigManager(Bingo bingo){
         File file = new File(bingo.getDataFolder(), bingo.getConfig().getString("language") + ".yml");
@@ -24,6 +28,12 @@ public class ConfigManager {
             Bukkit.getConsoleSender().sendMessage(ChatColor.RED + "Language file does not exist so the Bingo plugin could not start!");
             bingo.getPluginLoader().disablePlugin(bingo);
         }
+
+        countdownSeconds = bingo.getConfig().getInt("countDownLength");
+        secondsBetweenNumbersCalled = bingo.getConfig().getInt("timeBetweenCalls");
+        minimumPlayers = bingo.getConfig().getInt("minimumPlayers");
+        isAutoHosted = bingo.getConfig().getBoolean("autohosting");
+        canJoinDuringGame = bingo.getConfig().getBoolean("canJoinDuringGame");
 
         switch (bingo.getConfig().getString("colour")){
             case "red":
@@ -103,8 +113,26 @@ public class ConfigManager {
         }
     }
 
+    public int getSecondsBetweenNumbersCalled(){
+        return secondsBetweenNumbersCalled;
+    }
+
+    public boolean getIsAutoHosted() {
+        return isAutoHosted;
+    }
+
+    public boolean getCanJoinDuringGame() { return canJoinDuringGame; }
+
+    public int getMinimumPlayers() {
+        return minimumPlayers;
+    }
+
     public String getMessage(String type){
         return yamlConfiguration.getString(type);
+    }
+
+    public int getCountdownSeconds() {
+        return countdownSeconds;
     }
 
     public ChatColor getChatColor() {

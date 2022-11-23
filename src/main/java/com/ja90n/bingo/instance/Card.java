@@ -2,13 +2,16 @@ package com.ja90n.bingo.instance;
 
 import com.ja90n.bingo.Bingo;
 import com.ja90n.bingo.ConfigManager;
-import com.ja90n.bingo.GameState;
+import com.ja90n.bingo.enums.CustomSkull;
+import com.ja90n.bingo.enums.GameState;
+import com.ja90n.bingo.util.CustomSkullCreator;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
+import org.checkerframework.checker.units.qual.C;
 
 import java.util.*;
 
@@ -90,27 +93,21 @@ Like Map<Index, Number>
             }
         }
 
+        // Creation of the inventory
+
+        // Bingo numbers
         int timesRun = 0;
-
         for (int i : new int[]{11,12,13,14,15,20,21,22,23,24,29,30,31,32,33,38,39,40,41,42,47,48,49,50,51}) {
-
             ItemStack paper = new ItemStack(Material.PAPER);
             ItemMeta itemMeta = paper.getItemMeta();
             itemMeta.setDisplayName(String.valueOf(index.get(timesRun)));
             paper.setItemMeta(itemMeta);
-
             inventory.setItem(i,paper);
 
             timesRun++;
         }
 
-        ItemStack bingoButton = new ItemStack(Material.PINK_CONCRETE);
-        ItemMeta bingoButtonMeta = bingoButton.getItemMeta();
-        bingoButtonMeta.setDisplayName(configManager.getChatColor() + "BINGO");
-        bingoButton.setItemMeta(bingoButtonMeta);
-
-        inventory.setItem(19,bingoButton);
-
+        // Frame
         ItemStack frame = configManager.getFrame();
         for (int i : new int[]{1, 2, 3, 4, 5, 6, 7, 8, 9, 10,16,17,18,25,26,27,28,34,35,36,37,43,44,45,46,52,53}) {
             inventory.setItem(i, frame);
@@ -122,6 +119,17 @@ Like Map<Index, Number>
         backButtonMeta.setDisplayName(ChatColor.WHITE + configManager.getMessage("back-to-main-menu-button"));
         backButton.setItemMeta(backButtonMeta);
         inventory.setItem(0,backButton);
+
+        // text BINGO above the card
+        CustomSkullCreator customSkullCreator = new CustomSkullCreator();
+        inventory.setItem(2,customSkullCreator.getSkull(CustomSkull.B_BLACK,configManager.getChatColor() + "B"));
+        inventory.setItem(3,customSkullCreator.getSkull(CustomSkull.I_BLACK,configManager.getChatColor() + "I"));
+        inventory.setItem(4,customSkullCreator.getSkull(CustomSkull.N_BLACK,configManager.getChatColor() + "N"));
+        inventory.setItem(5,customSkullCreator.getSkull(CustomSkull.G_BLACK,configManager.getChatColor() + "G"));
+        inventory.setItem(6,customSkullCreator.getSkull(CustomSkull.O_BLACK,configManager.getChatColor() + "O"));
+
+        // BINGO button
+        inventory.setItem(19,customSkullCreator.getSkull(CustomSkull.BUTTON,configManager.getChatColor() + "BINGO"));
     }
 
     public boolean bingoCall(){

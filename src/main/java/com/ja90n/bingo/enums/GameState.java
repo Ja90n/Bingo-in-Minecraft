@@ -1,4 +1,4 @@
-package com.ja90n.bingo;
+package com.ja90n.bingo.enums;
 
 public enum GameState {
 

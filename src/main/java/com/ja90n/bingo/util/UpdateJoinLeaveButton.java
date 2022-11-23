@@ -2,7 +2,7 @@ package com.ja90n.bingo.util;
 
 import com.ja90n.bingo.Bingo;
 import com.ja90n.bingo.ConfigManager;
-import com.ja90n.bingo.GameState;
+import com.ja90n.bingo.enums.GameState;
 import com.ja90n.bingo.instance.Game;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -28,7 +28,7 @@ public class UpdateJoinLeaveButton {
                 brokenMeta.setDisplayName(ChatColor.RED + "Send a picture of this for 1 euro to Ja90n (one time use)");
                 broken.setItemMeta(brokenMeta);
 
-                inventory.setItem(22,broken);
+                inventory.setItem(24,broken);
             } else if (game.getGameState().equals(GameState.RECRUITING)){
                 ItemStack leave = new ItemStack(Material.BARRIER);
                 ItemMeta leaveMeta = leave.getItemMeta();
@@ -46,14 +46,14 @@ public class UpdateJoinLeaveButton {
 
                 leave.setItemMeta(leaveMeta);
 
-                inventory.setItem(22,leave);
+                inventory.setItem(24,leave);
             } else {
                 ItemStack card = new ItemStack(Material.PAPER);
                 ItemMeta cardMeta = card.getItemMeta();
                 cardMeta.setDisplayName(configManager.getChatColor() + configManager.getMessage("bingo-card"));
                 card.setItemMeta(cardMeta);
 
-                inventory.setItem(22,card);
+                inventory.setItem(24,card);
             }
         } else {
             if (game.getGameState().equals(GameState.OFF)){
@@ -62,7 +62,7 @@ public class UpdateJoinLeaveButton {
                 joinMeta.setDisplayName(ChatColor.WHITE + configManager.getMessage("status") + ChatColor.RED + configManager.getMessage("inactive-status"));
                 join.setItemMeta(joinMeta);
 
-                inventory.setItem(22,join);
+                inventory.setItem(24,join);
             } else if (game.getGameState().equals(GameState.RECRUITING)){
                 ItemStack join = new ItemStack(Material.PAPER);
                 ItemMeta joinMeta = join.getItemMeta();
@@ -79,7 +79,7 @@ public class UpdateJoinLeaveButton {
                 }
                 join.setItemMeta(joinMeta);
 
-                inventory.setItem(22,join);
+                inventory.setItem(24,join);
             } else {
                 ItemStack join = new ItemStack(Material.MAP);
                 ItemMeta joinMeta = join.getItemMeta();
@@ -94,7 +94,7 @@ public class UpdateJoinLeaveButton {
                 joinMeta.setLore(lore);
                 join.setItemMeta(joinMeta);
 
-                inventory.setItem(22,join);
+                inventory.setItem(24,join);
             }
 
         }

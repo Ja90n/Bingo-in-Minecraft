@@ -2,8 +2,9 @@ package com.ja90n.bingo.event.InventoryEvents;
 
 import com.ja90n.bingo.Bingo;
 import com.ja90n.bingo.ConfigManager;
-import com.ja90n.bingo.GameState;
+import com.ja90n.bingo.enums.GameState;
 import com.ja90n.bingo.gui.MainMenuGui;
+import com.ja90n.bingo.util.ItemStackGenerator;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
@@ -14,18 +15,17 @@ import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
-import java.util.UUID;
+import java.util.*;
 
 public class HostMenuEvent implements Listener {
 
-    private Bingo bingo;
-    private ConfigManager configManager;
+    private final Bingo bingo;
+    private final ConfigManager configManager;
+    private final ItemStackGenerator itemStackGenerator;
 
     public HostMenuEvent (Bingo bingo){
         this.bingo = bingo;
+        itemStackGenerator = new ItemStackGenerator(bingo);
         configManager = bingo.getConfigManager();
     }
 
@@ -90,13 +90,7 @@ public class HostMenuEvent implements Listener {
                         player.sendMessage(ChatColor.GREEN + configManager.getMessage("all-numbers-are-called-messsge"));
                     }
                 } else {
-                    int random = list.get(randomNumber(0,list.size()));
-
-                    ItemStack status = new ItemStack(Material.BARRIER);
-                    ItemMeta statusMeta = status.getItemMeta();
-                    statusMeta.setDisplayName(ChatColor.RED + configManager.getMessage("force-stop-game-button"));
-
-                    // Setting lore
+                    // Call number button
                     List<String> lore = new ArrayList<>();
                     if (bingo.getGame().getGameState().equals(GameState.LINE)){
                         lore.add(ChatColor.WHITE + configManager.getMessage("status") + ChatColor.GREEN + configManager.getMessage("line-status"));
@@ -104,15 +98,12 @@ public class HostMenuEvent implements Listener {
                         lore.add(ChatColor.WHITE + configManager.getMessage("status") + ChatColor.GREEN + configManager.getMessage("full-status"));
                     }
                     if (!bingo.getGame().getPlayers().isEmpty()){
-                        lore.add(configManager.getChatColor() + configManager.getMessage("current-players"));
-                        for (UUID target : bingo.getGame().getPlayers().keySet()){
-                            lore.add(ChatColor.WHITE + Bukkit.getPlayer(target).getDisplayName());
-                        }
+                        lore.addAll(itemStackGenerator.getPlayerList());
                     }
-                    statusMeta.setLore(lore);
-                    status.setItemMeta(statusMeta);
-                    event.getClickedInventory().setItem(20,status);
 
+                    event.getClickedInventory().setItem(20,itemStackGenerator.getItemStack(Material.BARRIER,ChatColor.RED + configManager.getMessage("force-stop-game-button"),lore));
+
+                    int random = list.get(randomNumber(0,list.size()));
                     bingo.getGame().callNumber(random);
                 }
             } else if (event.getSlot() == 0){

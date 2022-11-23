@@ -100,7 +100,25 @@ Like Map<Index, Number>
         for (int i : new int[]{11,12,13,14,15,20,21,22,23,24,29,30,31,32,33,38,39,40,41,42,47,48,49,50,51}) {
             ItemStack paper = new ItemStack(Material.PAPER);
             ItemMeta itemMeta = paper.getItemMeta();
-            itemMeta.setDisplayName(String.valueOf(index.get(timesRun)));
+            String letter = "C-";
+            int num = index.get(timesRun);
+            if (num <= 15){
+                letter = "B-";
+            }
+            if (num <= 30 && num >= 16){
+                letter = "I-";
+            }
+            if (num <= 45 && num >= 31){
+                letter = "N-";
+            }
+            if (num <= 60 && num >= 46){
+                letter = "G-";
+            }
+            if (num <= 75 && num >= 61){
+                letter = "O-";
+            }
+            String number = String.valueOf(index.get(timesRun));
+            itemMeta.setDisplayName(letter + number);
             paper.setItemMeta(itemMeta);
             inventory.setItem(i,paper);
 

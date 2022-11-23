@@ -38,7 +38,10 @@ public class BingoCardEvent implements Listener {
             if (clickedItem.getType().equals(Material.PAPER) && event.getSlot() <= 54){
                 int number;
                 Player player = (Player) event.getWhoClicked();
-                number = Integer.parseInt(clickedItem.getItemMeta().getDisplayName());
+                StringBuilder stringBuilder = new StringBuilder(clickedItem.getItemMeta().getDisplayName());
+                stringBuilder.deleteCharAt(0);
+                stringBuilder.deleteCharAt(0);
+                number = Integer.parseInt(stringBuilder.toString());
                 if (bingo.getGame().getNumbers().get(number)){
                     if (!bingo.getGame().getCard(player.getUniqueId()).getNumbersClicked()
                             .get(bingo.getGame().getCard(player.getUniqueId()).numberToIndex(number))){

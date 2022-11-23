@@ -83,14 +83,30 @@ public class Game {
     public void callNumber (int number){
         numbers.remove(number);
         numbers.put(number,true);
+        String letter = null;
+        if (number <= 15){
+            letter = "B-";
+        }
+        if (number <= 30 && number >= 16){
+            letter = "I-";
+        }
+        if (number <= 45 && number >= 31){
+            letter = "N-";
+        }
+        if (number <= 60 && number >= 46){
+            letter = "G-";
+        }
+        if (number <= 75 && number >= 61){
+            letter = "O-";
+        }
         for (UUID uuid : players.keySet()){
             ItemStack itemStack = new ItemStack(Material.MAP);
             ItemMeta itemMeta = itemStack.getItemMeta();
-            itemMeta.setDisplayName(configManager.getChatColor() + configManager.getMessage("called-number") +ChatColor.WHITE  + number + configManager.getChatColor() +"!");
+            itemMeta.setDisplayName(configManager.getChatColor() + configManager.getMessage("called-number") +ChatColor.WHITE + letter + number + configManager.getChatColor() +"!");
             itemStack.setItemMeta(itemMeta);
 
             getCard(uuid).getInventory().setItem(28,itemStack);
-            Bukkit.getPlayer(uuid).sendMessage(configManager.getChatColor() + configManager.getMessage("called-number") +ChatColor.WHITE  + number + configManager.getChatColor() +"!");
+            Bukkit.getPlayer(uuid).sendMessage(configManager.getChatColor() + configManager.getMessage("called-number") +ChatColor.WHITE + letter + number + configManager.getChatColor() +"!");
         }
     }
 
